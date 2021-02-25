@@ -94,5 +94,53 @@ git log --author='user.name'
 
 ```shell
 # 不是原位替换旧有提交，旧有的提交将不会存在仓库历史中
-git commit --amend
+git commit --amend -m 'message'
+
+# 取消暂存的文件
+git reset HEAD <filename>
+
+# 撤消对文件的修改
+git checkout -- <filename>
+```
+
+### 1.6 远程仓库的使用
+
+```shell
+# 查看远程仓库
+git remote
+git remote -v
+
+# 添加远程仓库
+git remote add <shortname> <url>
+
+# 从远程仓库中抓取与拉取
+git fetch <remote>
+
+# 推送到远程仓库
+git push <remote> <branch>
+
+# 查看某个远程仓库
+git remote show <remote>
+
+# 远程仓库的重命名与移除
+git remote rename <newname>
+git remote remove <remote>
+
+```
+
+### 1.7 标签
+
+```shell
+# 列出标签
+git tag
+
+# 创建标签
+git tag -a v1.0 -m 'message'
+git tag v1.1-lw
+
+# 后期打标签
+git tag -a v2.0 SHA-1 -m 'message'
+
+# 共享标签
+
 ```
