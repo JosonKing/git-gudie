@@ -53,6 +53,8 @@ git diff --staged
 
 # 提交更新
 git commit -m 'message'
+# 跳过使用暂存区域
+git commit -a -m 'message'
 
 # 忽略文件
 .gitignore
