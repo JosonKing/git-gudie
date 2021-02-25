@@ -51,6 +51,9 @@ git diff
 # 已暂存文件与最后一次提交的文件差异
 git diff --staged
 
+# 提交更新
+git commit -m 'message'
+
 # 忽略文件
 .gitignore
 ```
