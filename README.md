@@ -34,9 +34,9 @@ git clone user@server:path/to/repo.git <repoName>
 
 ### 1.4 仓库的更新
 
-![areas](C:\code\github\git-gudie\images\areas.png)
+![areas](.\images\areas.png)
 
-![lifecycle](C:\code\github\git-gudie\images\lifecycle.png)
+![lifecycle](.\images\lifecycle.png)
 
 ```shell
 # 检查当前文件状态
