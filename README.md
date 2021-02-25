@@ -54,7 +54,11 @@ git diff --staged
 # 提交更新
 git commit -m 'message'
 # 跳过使用暂存区域
+# 自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤
 git commit -a -m 'message'
+
+# 移除文件
+
 
 # 忽略文件
 .gitignore
