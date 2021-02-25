@@ -93,5 +93,6 @@ git log --author='user.name'
 ### 1.5 撤消操作
 
 ```shell
+# 不是原位替换旧有提交，旧有的提交将不会存在仓库历史中
 git commit --amend
 ```
