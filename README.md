@@ -58,8 +58,40 @@ git commit -m 'message'
 git commit -a -m 'message'
 
 # 移除文件
+git rm <filename>
+git rm -f <filename>
+git rm --cached <filename>
 
+# 移动文件
+# mv README.md README
+# git rm README.md
+# git add README
+git mv file_from file_to
 
 # 忽略文件
 .gitignore
+```
+
+### 1.4 查看提交历史
+
+```shell
+git log
+
+# 每次提交所引入的差异，并限制显示的日志条目数量
+git log -p -n
+
+# 每次提交的简略统计信息
+git log --stat
+
+# 仅显示作者匹配指定字符串的提交
+git log --author='user.name'
+
+```
+
+> **隐藏合并提交** --no-merges 
+
+### 1.5 撤消操作
+
+```shell
+git commit --amend
 ```
