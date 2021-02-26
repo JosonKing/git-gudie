@@ -263,3 +263,7 @@ git checkout -b <newbranchname>
 ```shell
 git checkout -b iss53
 ```
+
+```shell
+git commit -a -m 'added a new footer [issue 53]'
+```
