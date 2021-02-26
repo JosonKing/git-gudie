@@ -239,7 +239,7 @@ git commit -a -m 'made other changes'
 # 提交历史及各个分支分叉历史
 git log --oneline --decorate --graph --all
 
-# 创建新分支的同时切换过去
+# 创建新分支的同时切换过去，
 git checkout -b <newbranchname>
 ```
 
