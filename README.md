@@ -32,6 +32,13 @@ git init
 git clone user@server:path/to/repo.git <repoName>
 ```
 
+> ## 生成 SSH 公钥
+>
+> ```shell
+> # ~/.ssh
+> ssh-keygen -o
+> ```
+
 ### 1.4 仓库的更新
 
 ![areas](.\images\areas.png)
@@ -462,7 +469,7 @@ git checkout -b <branch> <remote>/<branch>
 > 从一个远程跟踪分支检出一个本地分支会自动创建所谓的“跟踪分支”（它跟踪的分支叫做“上游分支”）。
 
 ```shell
-git checkout --track <remote> <branch>
+git checkout --track <remote>/<branch>
 
 # <branch> 本地不存在且远程分支唯一匹配 
 git checkout <branch>
@@ -471,6 +478,46 @@ git checkout <branch>
 git checkout -b <newbranch> <remote>/<branch>
 
 # 本地分支重命名
-git branch -u <remote> <branch>
+git branch -u <remote>/<branch>
 
+# 查看设置的所有跟踪分支
+git branch -vv
+git fetch --all;git branch -vv
+
+# 拉取
+git fetch
+git merge
+
+# 查找当前分支所跟踪的服务器与分支， 从服务器上抓取数据然后尝试合并入那个远程分支
+git pull
+
+# 删除远程分支
+git push origin --delete <branch>
 ```
+
+## 3. 在其它环境中使用 Git
+
+### 3.1 自带图形工具
+
+- gitk 日志查看
+- git gui 提交
+
+### 3.2 VSCode 中的 Git
+
+- 在行号槽显示你正在编辑的文件的改动情况。
+
+- Git 状态栏（位于左下角）会显示当前所在分支，编辑指示符以及未提交或者未拉取的提交的数量。
+
+- 你能够在编辑器内完成常用的 Git 操作：
+
+  - 初始化一个仓库。
+  - 克隆一个仓库。
+  - 新建分支和标签。
+  - 暂存和提交修改。
+  - 对一个远程分支进行推送/拉取/同步。
+  - 解决合并冲突。
+  - 查看比较。
+
+- 配合一个扩展，你也能够处理 GitHub 的拉取请求
+
+  [官方文档：https://code.visualstudio.com/Docs/editor/versioncontrol](https://code.visualstudio.com/Docs/editor/versioncontrol)
