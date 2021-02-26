@@ -154,7 +154,7 @@ git checkout <tag>
 git checkout -b version2 <tag>
 ```
 
-## 2 分支
+## 2. 分支
 
 ### 2.1 分支简介
 
@@ -260,10 +260,91 @@ git checkout -b <newbranchname>
 
 #### 2.2.1 新建分支
 
+![basic-branching-1](.\images\basic-branching-1.png)
+
+<center>图2.2.1-1：一个简单提交历史</center>
+
 ```shell
 git checkout -b iss53
 ```
 
+![basic-branching-2](.\images\basic-branching-2.png)
+
+<center>图2.2.1-2：创建一个新分支指针</center>
+
 ```shell
 git commit -a -m 'added a new footer [issue 53]'
+```
+
+
+
+![basic-branching-3](.\images\basic-branching-3.png)
+
+<center>图2.2.1-3：iss53 分支随着工作的进展向前推进</center>
+
+```shell
+git checkout master
+git checkout -b hotfix
+git commit -a -m 'fixed the broken email address'
+```
+
+
+
+![basic-branching-4](.\images\basic-branching-4.png)
+
+<center>图2.2.1-4：基于 master 分支的紧急问题分支 hotfix branch</center>
+
+```shell
+git checkout master
+
+# 将 hotfix 分支合并回你的 master 分支
+# 快进（fast-forward）
+git merge hotfix
+```
+
+
+
+![basic-branching-5](.\images\basic-branching-5.png)
+
+<center>图2.2.1-5：master 被快进到 hotfix</center>
+
+```shell
+git checkout iss53
+git commit -a -m 'finished the new footer [issue 53]'
+```
+
+
+
+![basic-branching-6](.\images\basic-branching-6.png)
+
+<center>图2.2.1-6：继续在 iss53 分支上的工作</center>
+
+#### 2.2.2 分支的合并
+
+```shell
+git checkout master
+git merge iss53
+```
+
+
+
+![basic-merging-1](.\images\basic-merging-1.png)
+
+<center>图2.2.2-1：合并中所用到的三个快照</center>
+
+
+
+![basic-merging-2](.\images\basic-merging-2.png)
+
+<center>图2.2.2-2：一个合并提交</center>
+
+```html
+# 遇到冲突时的分支合并
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
 ```
