@@ -260,4 +260,10 @@ git checkout -b <newbranchname>
 
 #### 2.2.1 新建分支
 
-hotfix
+```shell
+git checkout -b iss53
+```
+
+```shell
+git commit -a -m 'added a new footer [issue 53]'
+```
