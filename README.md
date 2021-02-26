@@ -520,4 +520,6 @@ git push origin --delete <branch>
 
 - 配合一个扩展，你也能够处理 GitHub 的拉取请求
 
-  [官方文档：https://code.visualstudio.com/Docs/editor/versioncontrol](https://code.visualstudio.com/Docs/editor/versioncontrol)
+  VSCode官方文档：[https://code.visualstudio.com/Docs/editor/versioncontrol](https://code.visualstudio.com/Docs/editor/versioncontrol)
+
+参考资料：[git官方文档 https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
