@@ -402,3 +402,75 @@ git branch --no-merged master
 <center>图2.4.2-2：合并了 dumbidea 和 iss91v2 分支之后的提交历史</center>
 
 > 这些分支全部都存于本地。 当你新建和合并分支的时候，所有这一切都只发生在你本地的 Git 版本库中 —— 没有与服务器发生交互。
+
+### 2.5 远程分支
+
+```shell
+# 查看远程分支
+git ls-remote <remote>
+```
+
+![lr-branches-2](.\images\remote-branches-1.png)
+
+<center>图2.5-1：克隆之后的服务器与本地仓库</center>
+
+![lr-branches-2](.\images\remote-branches-2.png)
+
+<center>图2.5-2：本地与远程的工作可以分叉</center>
+
+
+
+```shell
+# 远程仓库同步数据
+git fetch <remote>
+```
+
+
+
+![lr-branches-2](.\images\remote-branches-3.png)
+
+<center>图2.5-3：git fetch 更新你的远程跟踪分支</center>
+
+```shell
+# 添加一个新的远程仓库引用到当前的项目
+git remote add
+```
+
+![lr-branches-2](.\images\remote-branches-4.png)
+
+<center>图2.5-4：添加另一个远程仓库</center>
+
+```shell
+# 抓取远程仓库 teamone 有而本地没有的数据
+git fetch teamone
+```
+
+![lr-branches-2](.\images\remote-branches-5.png)
+
+<center>图2.5-5：远程跟踪分支 teamone/master</center>
+
+```shell
+# 推送到有写入权限的远程仓库上
+git push <remote> <branch>
+git fetch <remote>
+git merge <remote> <branch>
+git checkout -b <branch> <remote>/<branch>
+```
+
+> ### 跟踪分支
+>
+> 从一个远程跟踪分支检出一个本地分支会自动创建所谓的“跟踪分支”（它跟踪的分支叫做“上游分支”）。
+
+```shell
+git checkout --track <remote> <branch>
+
+# <branch> 本地不存在且远程分支唯一匹配 
+git checkout <branch>
+
+# 本地分支别名
+git checkout -b <newbranch> <remote>/<branch>
+
+# 本地分支重命名
+git branch -u <remote> <branch>
+
+```
