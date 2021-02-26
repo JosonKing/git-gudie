@@ -105,7 +105,7 @@ git checkout -- <filename>
 # 拉取服务器指定版本提交
 git reset --hard SHA-1
 
-# 拉取服务器最近一次提交1
+# 拉取服务器最近一次提交（倒数第二次）
 git reset --hard HEAD^
 ```
 
