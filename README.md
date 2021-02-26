@@ -102,7 +102,7 @@ git reset HEAD <filename>
 # 撤消对文件的修改
 git checkout -- <filename>
 
-# 拉取服务器指定版本提交
+# 拉取服务器指定版本提交1
 git reset --hard SHA-1
 
 # 拉取服务器最近一次提交
