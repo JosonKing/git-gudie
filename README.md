@@ -1,5 +1,7 @@
 # git --fast-version-control
 
+[toc]
+
 ## 1. 快速上手
 
 ### 1.1 安装(Windows)
@@ -176,7 +178,7 @@ git add README test.rb LICENSE
 git commit -m 'The initial commit of my project'
 ```
 
-![commit-and-tree](C:\code\github\git-gudie\images\commit-and-tree.png)
+![commit-and-tree](.\images\commit-and-tree.png)
 
 <center>图2.1-1：首次提交对象及其树结构</center>
 
@@ -206,7 +208,7 @@ git log --oneline --decorate
 
 
 
-![head-to-master](C:\code\github\git-gudie\images\head-to-master.png)
+![head-to-master](.\images\head-to-master.png)
 
 <center>图2.1-5：HEAD 指向当前所在的分支</center>
 
@@ -256,7 +258,7 @@ git log --oneline --decorate --graph --all
 git checkout -b <newbranchname>
 ```
 
-## 2.2 分支的新建与合并
+### 2.2 分支的新建与合并
 
 实际工作中可能遇到下面类似的工作情况。 步骤如下：
 

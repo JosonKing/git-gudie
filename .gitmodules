@@ -1,0 +1,3 @@
+[submodule "git-submodule-gudie"]
+	path = git-submodule-gudie
+	url = git@github.com:JosonKing/git-submodule-gudie.git
