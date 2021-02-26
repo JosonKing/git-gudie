@@ -354,3 +354,51 @@ git merge iss53
 </div>
 >>>>>>> iss53:index.html
 ```
+
+### 2.3 分支管理
+
+```shell
+# 查看所有分支
+git branch
+
+# 查看每一个分支的最后一次提交
+git branch -v
+
+# 查看哪些分支已经合并到当前分支
+git branch --merged
+
+# 查看所有包含未合并工作的分支
+git branch --no-merged
+
+# 查看其它分支的合并状态
+git checkout testing
+git branch --no-merged master
+```
+
+### 2.4 分支开发工作流
+
+#### 2.4.1 长期分支
+
+
+
+![lr-branches-1](.\images\lr-branches-1.png)
+
+<center>图2.4.1-1：趋于稳定分支的线性图</center>
+
+
+
+![lr-branches-2](.\images\lr-branches-2.png)
+
+<center>图2.4.1-2：趋于稳定分支的流水线（“silo”）视图</center>
+
+#### 2.4.2 主题分支
+
+![lr-branches-2](.\images\topic-branches-1.png)
+
+<center>图2.4.2-1：拥有多个主题分支的提交历史</center>
+
+![lr-branches-2](.\images\topic-branches-2.png)
+
+<center>图2.4.2-2：合并了 dumbidea 和 iss91v2 分支之后的提交历史</center>
+
+> 这些分支全部都存于本地。 当你新建和合并分支的时候，所有这一切都只发生在你本地的 Git 版本库中 —— 没有与服务器发生交互。
