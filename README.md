@@ -142,5 +142,104 @@ git tag v1.1-lw
 git tag -a v2.0 SHA-1 -m 'message'
 
 # 共享标签
+git push <remote> <tagname>
+git push <remote> --tags
 
+# 删除标签
+git tag -d <tagname>
+git push <remote> --delete <tagname>
+
+# 检出标签
+git checkout <tag>
+git checkout -b version2 <tag>
 ```
+
+## 2 分支
+
+### 2.1 分支简介
+
+```shell
+git add README test.rb LICENSE
+git commit -m 'The initial commit of my project'
+```
+
+![commit-and-tree](C:\code\github\git-gudie\images\commit-and-tree.png)
+
+<center>图2.1-1：首次提交对象及其树结构</center>
+
+![commits-and-parents](.\images\commits-and-parents.png)
+
+<center>图2.1-2：提交对象及其父对象</center>
+
+
+
+![branch-and-history](.\images\branch-and-history.png)
+
+<center>图2.1-3：分支及其提交历史</center>
+
+```shell
+# 分支创建
+git branch testing
+
+#查看各个分支当前所指的对象
+git log --oneline --decorate
+```
+
+![two-branches](.\images\two-branches.png)
+
+
+
+<center>图2.1-4：两个指向相同提交历史的分支</center>
+
+
+
+![head-to-master](C:\code\github\git-gudie\images\head-to-master.png)
+
+<center>图2.1-5：HEAD 指向当前所在的分支</center>
+
+```shell
+# 分支切换
+git checkout testing
+```
+
+![head-to-testing](.\images\head-to-testing.png)
+
+<center>图2.1-6：HEAD 指向当前所在的分支</center>
+
+```shell
+# testing 分支提交
+git commit -a -m 'made a change'
+```
+
+![advance-testing](.\images\advance-testing.png)
+
+<center>图2.1-7：HEAD 分支随着提交操作自动向前移动</center>
+
+```shell
+# 切换到 master 分支
+git checkout master
+```
+
+![advance-master](.\images\checkout-master.png)
+
+<center>图2.1-7：HEAD 分支随着提交操作自动向前移动</center>
+
+
+
+```shell
+# master 分支提交
+git commit -a -m 'made other changes'
+```
+
+![advance-master](.\images\advance-master.png)
+
+<center>图2.1-8：项目分叉历史</center>
+
+```shell
+# 提交历史及各个分支分叉历史
+git log --oneline --decorate --graph --all
+
+# 创建新分支的同时切换过去
+git checkout -b <newbranchname>
+```
+
