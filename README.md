@@ -384,35 +384,9 @@ git checkout testing
 git branch --no-merged master
 ```
 
-### 2.4 分支开发工作流
-
-#### 2.4.1 长期分支
-
-
-
-![lr-branches-1](.\images\lr-branches-1.png)
-
-<center>图2.4.1-1：趋于稳定分支的线性图</center>
-
-
-
-![lr-branches-2](.\images\lr-branches-2.png)
-
-<center>图2.4.1-2：趋于稳定分支的流水线（“silo”）视图</center>
-
-#### 2.4.2 主题分支
-
-![lr-branches-2](.\images\topic-branches-1.png)
-
-<center>图2.4.2-1：拥有多个主题分支的提交历史</center>
-
-![lr-branches-2](.\images\topic-branches-2.png)
-
-<center>图2.4.2-2：合并了 dumbidea 和 iss91v2 分支之后的提交历史</center>
-
 > 这些分支全部都存于本地。 当你新建和合并分支的时候，所有这一切都只发生在你本地的 Git 版本库中 —— 没有与服务器发生交互。
 
-### 2.5 远程分支
+### 2.4 远程分支
 
 ```shell
 # 查看远程分支
@@ -421,11 +395,11 @@ git ls-remote <remote>
 
 ![lr-branches-2](.\images\remote-branches-1.png)
 
-<center>图2.5-1：克隆之后的服务器与本地仓库</center>
+<center>图2.4-1：克隆之后的服务器与本地仓库</center>
 
 ![lr-branches-2](.\images\remote-branches-2.png)
 
-<center>图2.5-2：本地与远程的工作可以分叉</center>
+<center>图2.4-2：本地与远程的工作可以分叉</center>
 
 
 
@@ -438,7 +412,7 @@ git fetch <remote>
 
 ![lr-branches-2](.\images\remote-branches-3.png)
 
-<center>图2.5-3：git fetch 更新你的远程跟踪分支</center>
+<center>图2.4-3：git fetch 更新你的远程跟踪分支</center>
 
 ```shell
 # 添加一个新的远程仓库引用到当前的项目
@@ -447,7 +421,7 @@ git remote add
 
 ![lr-branches-2](.\images\remote-branches-4.png)
 
-<center>图2.5-4：添加另一个远程仓库</center>
+<center>图2.4-4：添加另一个远程仓库</center>
 
 ```shell
 # 抓取远程仓库 teamone 有而本地没有的数据
@@ -456,7 +430,7 @@ git fetch teamone
 
 ![lr-branches-2](.\images\remote-branches-5.png)
 
-<center>图2.5-5：远程跟踪分支 teamone/master</center>
+<center>图2.4-5：远程跟踪分支 teamone/master</center>
 
 ```shell
 # 推送到有写入权限的远程仓库上
@@ -497,14 +471,128 @@ git pull
 git push origin --delete <branch>
 ```
 
-## 3. 在其它环境中使用 Git
+## 3. 子模块
 
-### 3.1 自带图形工具
+### 3.1 添加子模块
+
+```shell
+# URL: 想要跟踪的项目的相对或绝对路径
+git submodule add URL <submodulename>
+
+git status
+git diff --cached --submodule
+git commit -am 'message'
+git push <remote> <branch>
+```
+
+> 虽然 `submodule` 是工作目录中的一个子目录，但 Git 还是会将它视作一个子模块。当你不在那个目录中时，Git 并不会跟踪它的内容， 而是将它看作子模块仓库中的某个具体的提交
+
+### 3.2 克隆含有子模块的项目
+
+```shell
+# 克隆一个含有子模块的项目 #1
+git clone url <repoName>
+
+# 初始化本地配置文件 #2
+git submodule init
+# 从该项目中抓取所有数据并检出父项目中列出的合适的提交 #3
+git submodule update
+
+# 效果同#2#3
+git submodule update --init
+git submodule update --init --recursive
+
+# 效果同#1#2#3
+git clone url <repoName> --recurse-submodules
+```
+
+### 3.3 在包含子模块的项目上工作
+
+```shell
+# 从子模块的远端拉取上游修改
+git fetch
+git merge
+git diff --submodule
+
+# 效果同 git fetch;git merge
+git submodule update --remote <submodulename>
+
+# 修改子模块跟踪仓库的其它分支，-f:在仓库中保留跟踪信息
+git config -f .gitmodules submodule.submodulename.branch branchname
+```
+
+```shell
+# 从项目远端拉取上游更改， --init:新子模块 --recursive:子模块有嵌套的子模块
+git submodule update --init --recursive
+
+# 将新的 URL 复制到本地配置中
+git submodule sync --recursive
+```
+
+```shell
+# 在子模块上工作
+# /project/submodulename/
+git checkout -b branchname
+git commit -am 'message'
+# /project/
+git submodule update --remote --merge
+```
+
+```shell
+# 发布子模块改动
+# /project/submodulename/
+git commit -am 'message'
+git push
+# /project/
+git commit -am 'message'
+git push
+
+git push --recurse-submodules=check
+git push --recurse-submodules=on-demand
+```
+
+### 3.4 子模的块技巧
+
+```shell
+# 子模块遍历
+git submodule foreach 'git stash'
+git submodule foreach 'git checkout -b branchname'
+git diff; git submodule foreach 'git diff
+
+# 别名配置
+git config alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
+git config alias.spush 'push --recurse-submodules=on-demand'
+git config alias.supdate 'submodule update --remote --merge'
+```
+
+## 4. 项目开发规范
+
+### 4.1 分支开发工作流
+
+![lr-branches-1](.\images\lr-branches-1.png)
+
+<center>图4.1-1：趋于稳定分支的线性图</center>
+
+
+
+![lr-branches-2](.\images\lr-branches-2.png)
+
+<center>图4.1-2：趋于稳定分支的流水线（“silo”）视图</center>
+
+
+
+![lr-branches-1](.\images\branch-work.png)
+
+<center>图4.1-3：git 多分支流程图</center>
+
+## 5. 在其它环境中使用 Git
+
+### 5.1 自带图形工具
 
 - gitk 日志查看
 - git gui 提交
 
-### 3.2 VSCode 中的 Git
+### 5.2 VSCode 中的 Git
 
 - 在行号槽显示你正在编辑的文件的改动情况。
 
