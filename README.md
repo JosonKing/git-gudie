@@ -4,42 +4,36 @@
 
 ## 1. 快速上手
 
-### 1.1 安装(Windows)
+1. 安装(Windows)
 
-https://git-scm.com/download/win
+   https://git-scm.com/download/win
 
-### 1.2 git配置
+2. git配置
 
-```shell
-git config
-# ~/.gitconfig 或 ~/.config/git/config 只针对当前用户
-git config --global
-# .git/config 只针对该仓库
-git config --local
+   ```shell
+   git config --global "user.name"
+   git config --global "user.email"
+   ```
 
-git config --global "user.name"
-git config --global "user.email"
+   
 
-git config --list
+3. 获取git仓库
 
-```
+   ```shell
+   # 生成 SSH keys
+   ssh-keygen -o
+   # 克隆现有仓库
+   git clone user@server:path/to/repo.git
+   ```
 
-### 1.3 获取git仓库
+4. 仓库的更新
 
-```shell
-# 初始化仓库
-git init
+   ```shell
+   git add .
+   git commit -m 'message'
+   ```
 
-# 克隆现有仓库
-git clone user@server:path/to/repo.git <repoName>
-```
-
-> ## 生成 SSH 公钥
->
-> ```shell
-> # ~/.ssh
-> ssh-keygen -o
-> ```
+   
 
 ### 1.4 仓库的更新
 
