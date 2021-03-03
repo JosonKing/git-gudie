@@ -11,19 +11,17 @@
 2. git配置
 
    ```shell
-   git config --global "user.name"
-   git config --global "user.email"
+   git config --global user.name "user.name"
+   git config --global user.email "user.email"
    ```
 
 3. 获取git仓库
 
    ```shell
-   # 生成 SSH keys
-   ssh-keygen -o
    # 克隆现有仓库
-   git clone user@server:path/to/repo.git
+   git clone http://server/path/repo.git
    ```
-
+   
 4. 仓库的更新
 
    ```shell
@@ -49,8 +47,8 @@ git config --global
 # .git/config 只针对该仓库
 git config --local
 
-git config --global "user.name"
-git config --global "user.email"
+git config --global user.name "user.name"
+git config --global user.email "user.email"
 
 git config --list
 
