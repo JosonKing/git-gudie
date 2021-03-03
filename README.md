@@ -4,9 +4,9 @@
 
 ## 1. 快速上手
 
-1. 安装(Windows)
+1. 安装
 
-   https://git-scm.com/download/win
+   Windows版下载地址：https://git-scm.com/download/win
 
 2. git配置
 
@@ -14,8 +14,6 @@
    git config --global "user.name"
    git config --global "user.email"
    ```
-
-   
 
 3. 获取git仓库
 
@@ -29,13 +27,53 @@
 4. 仓库的更新
 
    ```shell
+   # 本地修改添加到暂存区
    git add .
-   git commit -m 'message'
+   # 提交到本地仓库
+git commit -m 'message'
+   # 拉取远程最新数据与本地代码合并
+   git pull
+   # 推送至远程
+   git push
    ```
-
    
 
-### 1.4 仓库的更新
+## 2. git教程
+
+### 2.1 git配置
+
+```shell
+git config
+# ~/.gitconfig 或 ~/.config/git/config 只针对当前用户
+git config --global
+# .git/config 只针对该仓库
+git config --local
+
+git config --global "user.name"
+git config --global "user.email"
+
+git config --list
+
+```
+
+### 2.2 获取git仓库
+
+> ## 生成 SSH 公钥
+>
+> ```shell
+> # ~/.ssh
+> ssh-keygen -o
+> ```
+
+```shell
+# 初始化仓库
+git init
+
+# 克隆现有仓库
+git clone user@server:path/to/repo.git <repoName>
+```
+
+### 2.3 仓库的更新
 
 ![areas](.\images\areas.png)
 
@@ -75,7 +113,7 @@ git mv file_from file_to
 .gitignore
 ```
 
-### 1.4 查看提交历史
+### 2.4 查看提交历史
 
 ```shell
 git log
@@ -93,7 +131,7 @@ git log --author='user.name'
 
 > **隐藏合并提交** --no-merges 
 
-### 1.5 撤消操作
+### 2.5 撤消操作
 
 ```shell
 # 不是原位替换旧有提交，旧有的提交将不会存在仓库历史中
@@ -112,7 +150,7 @@ git reset --hard SHA-1
 git reset --hard HEAD^
 ```
 
-### 1.6 远程仓库的使用
+### 2.6 远程仓库的使用
 
 ```shell
 # 查看远程仓库
@@ -137,7 +175,7 @@ git remote remove <remote>
 
 ```
 
-### 1.7 标签
+### 2.7 标签
 
 ```shell
 # 列出标签
@@ -163,9 +201,9 @@ git checkout <tag>
 git checkout -b version2 <tag>
 ```
 
-## 2. 分支
+### 2.8 分支
 
-### 2.1 分支简介
+#### 2.8.1 分支简介
 
 ```shell
 git add README test.rb LICENSE
@@ -179,8 +217,6 @@ git commit -m 'The initial commit of my project'
 ![commits-and-parents](.\images\commits-and-parents.png)
 
 <center>图2.1-2：提交对象及其父对象</center>
-
-
 
 ![branch-and-history](.\images\branch-and-history.png)
 
@@ -252,7 +288,7 @@ git log --oneline --decorate --graph --all
 git checkout -b <newbranchname>
 ```
 
-### 2.2 分支的新建与合并
+#### 2.8.2 分支的新建与合并
 
 实际工作中可能遇到下面类似的工作情况。 步骤如下：
 
@@ -267,11 +303,11 @@ git checkout -b <newbranchname>
 3. 在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。
 4. 切换回你最初工作的分支上，继续工作。
 
-#### 2.2.1 新建分支
+##### 2.8.2.1 新建分支
 
 ![basic-branching-1](.\images\basic-branching-1.png)
 
-<center>图2.2.1-1：一个简单提交历史</center>
+<center>图2.8.2.1-1：一个简单提交历史</center>
 
 ```shell
 git checkout -b iss53
@@ -279,7 +315,7 @@ git checkout -b iss53
 
 ![basic-branching-2](.\images\basic-branching-2.png)
 
-<center>图2.2.1-2：创建一个新分支指针</center>
+<center>图2.8.2.1-2：创建一个新分支指针</center>
 
 ```shell
 git commit -a -m 'added a new footer [issue 53]'
@@ -289,7 +325,7 @@ git commit -a -m 'added a new footer [issue 53]'
 
 ![basic-branching-3](.\images\basic-branching-3.png)
 
-<center>图2.2.1-3：iss53 分支随着工作的进展向前推进</center>
+<center>图2.8.2.1-3：iss53 分支随着工作的进展向前推进</center>
 
 ```shell
 git checkout master
@@ -301,7 +337,7 @@ git commit -a -m 'fixed the broken email address'
 
 ![basic-branching-4](.\images\basic-branching-4.png)
 
-<center>图2.2.1-4：基于 master 分支的紧急问题分支 hotfix branch</center>
+<center>图2.8.2.1-4：基于 master 分支的紧急问题分支 hotfix branch</center>
 
 ```shell
 git checkout master
@@ -311,41 +347,33 @@ git checkout master
 git merge hotfix
 ```
 
-
-
 ![basic-branching-5](.\images\basic-branching-5.png)
 
-<center>图2.2.1-5：master 被快进到 hotfix</center>
+<center>图2.8.2.1-5：master 被快进到 hotfix</center>
 
 ```shell
 git checkout iss53
 git commit -a -m 'finished the new footer [issue 53]'
 ```
 
-
-
 ![basic-branching-6](.\images\basic-branching-6.png)
 
-<center>图2.2.1-6：继续在 iss53 分支上的工作</center>
+<center>图2.8.2.1-6：继续在 iss53 分支上的工作</center>
 
-#### 2.2.2 分支的合并
+##### 2.8.2.2 分支的合并
 
 ```shell
 git checkout master
 git merge iss53
 ```
 
-
-
 ![basic-merging-1](.\images\basic-merging-1.png)
 
-<center>图2.2.2-1：合并中所用到的三个快照</center>
-
-
+<center>图2.8.2.2-1：合并中所用到的三个快照</center>
 
 ![basic-merging-2](.\images\basic-merging-2.png)
 
-<center>图2.2.2-2：一个合并提交</center>
+<center>图2.8.2.2-2：一个合并提交</center>
 
 ```html
 # 遇到冲突时的分支合并
@@ -358,7 +386,7 @@ git merge iss53
 >>>>>>> iss53:index.html
 ```
 
-### 2.3 分支管理
+#### 2.8.3 分支管理
 
 ```shell
 # 查看所有分支
@@ -380,7 +408,7 @@ git branch --no-merged master
 
 > 这些分支全部都存于本地。 当你新建和合并分支的时候，所有这一切都只发生在你本地的 Git 版本库中 —— 没有与服务器发生交互。
 
-### 2.4 远程分支
+#### 2.8.4 远程分支
 
 ```shell
 # 查看远程分支
@@ -389,11 +417,11 @@ git ls-remote <remote>
 
 ![lr-branches-2](.\images\remote-branches-1.png)
 
-<center>图2.4-1：克隆之后的服务器与本地仓库</center>
+<center>图2.8.4-1：克隆之后的服务器与本地仓库</center>
 
 ![lr-branches-2](.\images\remote-branches-2.png)
 
-<center>图2.4-2：本地与远程的工作可以分叉</center>
+<center>图2.8.4-2：本地与远程的工作可以分叉</center>
 
 
 
@@ -402,11 +430,9 @@ git ls-remote <remote>
 git fetch <remote>
 ```
 
-
-
 ![lr-branches-2](.\images\remote-branches-3.png)
 
-<center>图2.4-3：git fetch 更新你的远程跟踪分支</center>
+<center>图2.8.4-3：git fetch 更新你的远程跟踪分支</center>
 
 ```shell
 # 添加一个新的远程仓库引用到当前的项目
@@ -415,7 +441,7 @@ git remote add
 
 ![lr-branches-2](.\images\remote-branches-4.png)
 
-<center>图2.4-4：添加另一个远程仓库</center>
+<center>图2.8.4-4：添加另一个远程仓库</center>
 
 ```shell
 # 抓取远程仓库 teamone 有而本地没有的数据
@@ -424,7 +450,7 @@ git fetch teamone
 
 ![lr-branches-2](.\images\remote-branches-5.png)
 
-<center>图2.4-5：远程跟踪分支 teamone/master</center>
+<center>图2.8.4-5：远程跟踪分支 teamone/master</center>
 
 ```shell
 # 推送到有写入权限的远程仓库上
@@ -465,9 +491,9 @@ git pull
 git push origin --delete <branch>
 ```
 
-## 3. 子模块
+### 2.9. 子模块
 
-### 3.1 添加子模块
+#### 2.9.1 添加子模块
 
 ```shell
 # URL: 想要跟踪的项目的相对或绝对路径
@@ -481,7 +507,7 @@ git push <remote> <branch>
 
 > 虽然 `submodule` 是工作目录中的一个子目录，但 Git 还是会将它视作一个子模块。当你不在那个目录中时，Git 并不会跟踪它的内容， 而是将它看作子模块仓库中的某个具体的提交
 
-### 3.2 克隆含有子模块的项目
+#### 2.9.2 克隆含有子模块的项目
 
 ```shell
 # 克隆一个含有子模块的项目 #1
@@ -500,7 +526,7 @@ git submodule update --init --recursive
 git clone url <repoName> --recurse-submodules
 ```
 
-### 3.3 在包含子模块的项目上工作
+#### 2.9.3 在包含子模块的项目上工作
 
 ```shell
 # 从子模块的远端拉取上游修改
@@ -545,7 +571,7 @@ git push --recurse-submodules=check
 git push --recurse-submodules=on-demand
 ```
 
-### 3.4 子模的块技巧
+#### 2.9.4 子模的块技巧
 
 ```shell
 # 子模块遍历
@@ -559,51 +585,16 @@ git config alias.spush 'push --recurse-submodules=on-demand'
 git config alias.supdate 'submodule update --remote --merge'
 ```
 
-## 4. 项目开发规范
+## 3. 项目开发规范
 
-### 4.1 分支开发工作流
+### 3.1 分支开发工作流
 
-![lr-branches-1](.\images\lr-branches-1.png)
+![branch-work](.\images\branch-work.png)
 
-<center>图4.1-1：趋于稳定分支的线性图</center>
+<center>图3.1-3：git 多分支流程图</center>
 
+### 3.2 多流并行开发
 
+**参考资料：**
 
-![lr-branches-2](.\images\lr-branches-2.png)
-
-<center>图4.1-2：趋于稳定分支的流水线（“silo”）视图</center>
-
-
-
-![lr-branches-1](.\images\branch-work.png)
-
-<center>图4.1-3：git 多分支流程图</center>
-
-## 5. 在其它环境中使用 Git
-
-### 5.1 自带图形工具
-
-- gitk 日志查看
-- git gui 提交
-
-### 5.2 VSCode 中的 Git
-
-- 在行号槽显示你正在编辑的文件的改动情况。
-
-- Git 状态栏（位于左下角）会显示当前所在分支，编辑指示符以及未提交或者未拉取的提交的数量。
-
-- 你能够在编辑器内完成常用的 Git 操作：
-
-  - 初始化一个仓库。
-  - 克隆一个仓库。
-  - 新建分支和标签。
-  - 暂存和提交修改。
-  - 对一个远程分支进行推送/拉取/同步。
-  - 解决合并冲突。
-  - 查看比较。
-
-- 配合一个扩展，你也能够处理 GitHub 的拉取请求
-
-  VSCode官方文档：[https://code.visualstudio.com/Docs/editor/versioncontrol](https://code.visualstudio.com/Docs/editor/versioncontrol)
-
-参考资料：[git官方文档 https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
+- [git官方文档 https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
